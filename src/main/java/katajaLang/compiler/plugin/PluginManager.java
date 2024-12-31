@@ -57,9 +57,13 @@ public final class PluginManager {
         return plugins.keySet().toArray(new String[0]);
     }
 
-    public static void loadPlugin(String target){
-        if(plugins.containsKey(target)) loadedPlugin = loadPlugin(new File(plugins.get(target)));
-        else throw new RuntimeException("Unknown target type: "+target);
+    public static boolean loadPlugin(String target){
+        if(plugins.containsKey(target)){
+            loadedPlugin = loadPlugin(new File(plugins.get(target)));
+            return true;
+        }
+
+        return false;
     }
 
     public static HashMap<String, Compilable> loadLibrary(String path){
